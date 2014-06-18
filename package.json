@@ -1,0 +1,14 @@
+{
+	"name":"scorekeeper",
+	"version":"0.0.1",
+	"start":"app.js",
+	"description":"A collaborative score keeping app",
+	"author":"Andrew White",
+	"dependencies":{
+		"socket.io": "0.9.x",
+		"marked":"*",
+		"express":"3.x.x",
+		"highlight.js":"*"
+	},
+	"private":true
+}
