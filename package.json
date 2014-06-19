@@ -6,7 +6,6 @@
 	"author":"Andrew White",
 	"dependencies":{
 		"socket.io": "0.9.x",
-		"marked":"*",
 		"express":"3.x.x",
 		"highlight.js":"*"
 	},

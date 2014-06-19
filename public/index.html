@@ -1,0 +1,48 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>Score Keeper</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width">
+		<link rel="stylesheet" type="text/css" href="styles.css">
+	</head>
+	<body>
+		<button id="newGame">New Game</button>
+		<div class="gameMaker">
+			Game Title: <input type="text" placeholder="Game Title" id="newGameTitle"><br>
+			Our Score: <input type="text" value="0" id="newGameOurScore"><br>
+			Game: <input type="text" value="1" id="newGameCurrentGame"><br>
+			Their Score: <input type="text" value="0" id="newGameTheirScore"><br><br>
+			<button onclick="cancelAddGame()">Cancel</button><button onclick="createNewGame()">Add Game</button>
+		</div>
+		<script id="entry-template" type="text/x-handlebars-template">
+			<div class="game {{gameID}}">
+				<div class="title">{{title}}</div>
+				<div class="scoreWrapper">
+					<div class="ourScoreWrapper">
+						<button onclick="increaseOurScore({{gameID}})">+</button>
+						<div class="ourScore">{{ourScore}}</div>
+						<button onclick="decreaseOurScore({{gameID}})">-</button>
+					</div>
+					
+					<div class="currentGameWrapper">
+						<button onclick="increaseGame({{gameID}})">+</button>
+						<div class="currentGame">{{currentGame}}</div>
+						<button onclick="decreaseGame({{gameID}})">-</button>
+					</div>
+					<div class="theirScoreWrapper">
+						<button onclick="increaseTheirScore({{gameID}})">+</button>
+						<div class="theirScore">{{theirScore}}</div>
+						<button onclick="decreaseTheirScore({{gameID}})">-</button>
+					</div>
+				</div>
+				<button class="deleteButton" onclick="deleteGame({{gameID}})">✖</button>
+			</div>
+		</script>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script type="text/javascript" src="handlebars.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
+		<script type="text/javascript" src="scripts.js"></script>
+	</body>
+</html>
