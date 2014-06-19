@@ -25,6 +25,9 @@ body{
 	text-align: center;
 	vertical-align: middle;
 }
+.ourScoreWrapper button, .currentGameWrapper button, .theirScoreWrapper button{
+	width:60%;
+}
 .currentGame{
 	margin: 0 auto;
 	width:50px;
