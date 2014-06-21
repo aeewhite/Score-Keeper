@@ -29,6 +29,12 @@ function addGame(gameObject){
 }
 function displayGame(gameObject){
 	$('body').append(gametemplate(gameObject));
+	$("div.score").on("taphold",function(){
+		console.log('taphold triggered');
+		var gameID = $(this).data('gameid');
+		var team = $(this).data('team');
+		resetScore(gameID,team);
+	});
 }
 function changeScore(gameID, team, change){
 	if(team == "ours"){
@@ -55,6 +61,16 @@ function decreaseOurScore(gameID){
 function decreaseTheirScore(gameID){
 	changeScore(gameID, "theirs", -1);
 }
+function getScore(gameID,team){
+	var currentScore;
+	if(team == "ours"){
+		currentScore = $("."+gameID+"").children('.scoreWrapper').children('.ourScoreWrapper').children('.ourScore').text();
+	}
+	if(team == "theirs"){
+		currentScore = $("."+gameID+"").children('.scoreWrapper').children('.theirScoreWrapper').children('.theirScore').text();
+	}
+	return currentScore;
+}
 
 $(document).ready(function () {
 	socket.emit('connect');
@@ -68,6 +84,11 @@ function setScore(gameID, team, newScore){
 		$("."+gameID+"").children('.scoreWrapper').children('.theirScoreWrapper').children('.theirScore').text(newScore);
 	}
 }
+function resetScore(gameID, team){
+	var difference = -1 * Number(getScore(gameID,team));
+	changeScore(gameID,team, difference);
+}
+
 function createNewGame(){
 	var game = {
 		title:"",

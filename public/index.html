@@ -22,7 +22,7 @@
 				<div class="scoreWrapper">
 					<div class="ourScoreWrapper">
 						<button onclick="increaseOurScore({{gameID}})">+</button>
-						<div class="ourScore">{{ourScore}}</div>
+						<div class="ourScore score" data-team="ours" data-gameID="{{gameID}}">{{ourScore}}</div>
 						<button onclick="decreaseOurScore({{gameID}})">-</button>
 					</div>
 					
@@ -33,7 +33,7 @@
 					</div>
 					<div class="theirScoreWrapper">
 						<button onclick="increaseTheirScore({{gameID}})">+</button>
-						<div class="theirScore">{{theirScore}}</div>
+						<div class="theirScore score" data-team="theirs" data-gameID="{{gameID}}">{{theirScore}}</div>
 						<button onclick="decreaseTheirScore({{gameID}})">-</button>
 					</div>
 				</div>
@@ -41,6 +41,7 @@
 			</div>
 		</script>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script src="jquery.mobile.custom.min.js" type="text/javascript"></script>
 		<script type="text/javascript" src="handlebars.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
 		<script type="text/javascript" src="scripts.js"></script>
