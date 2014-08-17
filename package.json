@@ -1,6 +1,6 @@
 {
 	"name":"scorekeeper",
-	"version":"0.0.1",
+	"version":"1.0.0",
 	"start":"app.js",
 	"description":"A collaborative score keeping app",
 	"author":"Andrew White",
