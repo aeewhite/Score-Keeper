@@ -8,7 +8,7 @@ var port = 3000;
 
 // To specify port as first argument set port to process.argv[2]
 
-var server = http.createServer(app)
+var server = http.createServer(app);
 
 server.listen(port);
 
@@ -19,15 +19,15 @@ var log = fs.createWriteStream('log.txt', {'flags': 'a'});
 var startupTime = new Date(Date.now());
 
 function getNiceTime(){
-	return new Date(Date.now()).toLocaleString()
+	return new Date(Date.now()).toLocaleString();
 }
 
-function log (input) {
+function combinedLog (input) {
 	console.log(input);
 	log.write(input);
 }
 
-log.write("\n \n Server Started at "+getNiceTime()+" on port "+port+"\n\n");
+combinedLog("\n \n Server Started at "+getNiceTime()+" on port "+port+"\n\n");
 
 io.set('log level', 1);
 
@@ -37,7 +37,7 @@ app.configure(function() {
 
 
 app.get('/', function(req, res){
-	res.sendFile( __dirname+'/public/index.html' ) 
+	res.sendFile( __dirname+'/public/index.html' );
 });
 
 var currentGames = [];
@@ -45,7 +45,7 @@ var currentGames = [];
 io.sockets.on('connection', function (socket) {
 	socket.on('connect',function(){
 		socket.emit('sendAllGames',currentGames);
-	})
+	});
 	socket.on('addGame',function(data){
 		currentGames.push(data);
 		console.log("Game Added");
@@ -67,7 +67,7 @@ io.sockets.on('connection', function (socket) {
 				}
 				break;
 			}
-		};
+		}
 		console.log("Score Changed");
 		console.log(currentGames);
 	});
@@ -78,7 +78,7 @@ io.sockets.on('connection', function (socket) {
 				currentGames.splice(i,1);
 				break;
 			}
-		};
+		}
 	});
 	socket.on('changeGame',function(data){
 		var gameID = data[0];
@@ -88,7 +88,7 @@ io.sockets.on('connection', function (socket) {
 				currentGames[i].currentGame = newGame;
 				break;
 			}
-		};
+		}
 		socket.broadcast.emit('changeGame',data);
 	});
 });
