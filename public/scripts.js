@@ -9,7 +9,7 @@ var exampleGame = {
 	currentGame:"1",
 	theirScore:"12",
 	gameID:"1234"
-}
+};
 function addTestGame(id){
 	addGame({
 		title:"Union 14 Flood",
@@ -21,7 +21,7 @@ function addTestGame(id){
 }
 
 function addGame(gameObject){
-	if(gameObject.gameID==null){
+	if(gameObject.gameID===null){
 		return;
 	}
 	socket.emit('addGame',gameObject);
@@ -37,13 +37,14 @@ function displayGame(gameObject){
 	});
 }
 function changeScore(gameID, team, change){
+	var currentScore;
 	if(team == "ours"){
-		var currentScore = $("."+gameID+"").children('.scoreWrapper').children('.ourScoreWrapper').children('.ourScore').text();
+		currentScore = $("."+gameID+"").children('.scoreWrapper').children('.ourScoreWrapper').children('.ourScore').text();
 		currentScore = Number(currentScore) + Number(change);
 		$("."+gameID+"").children('.scoreWrapper').children('.ourScoreWrapper').children('.ourScore').text(currentScore);
 	}
 	if(team == "theirs"){
-		var currentScore = $("."+gameID+"").children('.scoreWrapper').children('.theirScoreWrapper').children('.theirScore').text();
+		currentScore = $("."+gameID+"").children('.scoreWrapper').children('.theirScoreWrapper').children('.theirScore').text();
 		currentScore = Number(currentScore) + Number(change);
 		$("."+gameID+"").children('.scoreWrapper').children('.theirScoreWrapper').children('.theirScore').text(currentScore);
 	}
@@ -96,7 +97,7 @@ function createNewGame(){
 		currentGame:"",
 		theirScore:"",
 		gameID:""
-	}
+	};
 	game.title = $('#newGameTitle').val();
 	game.ourScore = $('#newGameOurScore').val();
 	game.currentGame = $('#newGameCurrentGame').val();
@@ -109,13 +110,14 @@ function createNewGame(){
 $('#newGame').click(function(){
 	$('.gameMaker').show();
 	$('#newGame').hide();
+	$('#newGameTitle').focus();
 });
 function cancelAddGame(){
 	$('.gameMaker').hide();
 	$('#newGame').show();
 }
 function deleteGame(gameID){
-	if (confirm("Are you sure you want to delete this game?") == true) {
+	if (confirm("Are you sure you want to delete this game?") === true) {
     	removeGame(gameID);
    		socket.emit('deleteGame',gameID);    
     }
