@@ -27,7 +27,7 @@ function combinedLog (input) {
 	log.write(input);
 }
 
-combinedLog("\n \n Server Started at "+getNiceTime()+" on port "+port+"\n\n");
+combinedLog("\n \nServer Started at "+getNiceTime()+" on port "+port+"\n\n");
 
 io.set('log level', 1);
 
